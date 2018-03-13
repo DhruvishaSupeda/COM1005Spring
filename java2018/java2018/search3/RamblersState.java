@@ -29,8 +29,9 @@ public class RamblersState extends SearchState {
       if (coords1.gety() == coords2.gety())
         return true;
     }
-    else
+    else {
       return false;
+  }
   }
 
   // goalP
@@ -44,13 +45,13 @@ public class RamblersState extends SearchState {
   public ArrayList<SearchState> getSuccessors (Search searcher) {
     RamblersSearch rsearcher = (RamblersSearch) searcher;
     TerrainMap map = rsearcher.getMap();
-    ArrayList<CoordsLink> links=map.getLinks(coords1);
+  //  ArrayList<CoordsLink> links=map.getLinks(coords1);
     //int[][] links=map.getTmap();
     ArrayList<SearchState> succs=new ArrayList<SearchState>();
 
     //CoordsLink one = new CoordsLink();
 
-    for (CoordsLink one: links) {
+    /*for (CoordsLink one: links) {
     	  Coords scoords;
         if (compareCoords(coords1, coords2)) {
           scoords=one.getCoords2();
@@ -58,9 +59,10 @@ public class RamblersState extends SearchState {
         else {
           scoords=one.getCoords1();};
           succs.add((SearchState)new RamblersState(scoords,coords1,one.getCost()));
-        }
+        }*/
     return succs;
-    }
+  }
+
 
   // sameState
   public boolean sameState(SearchState s2) {
