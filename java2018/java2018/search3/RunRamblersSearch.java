@@ -15,7 +15,7 @@ public class RunRamblersSearch{
 
 
     Coords start = new Coords(3,5);
-    Coords goal = new Coords(9,8);
+    Coords goal = new Coords(7,14);
     //Gets initial cost from where it starts
     int[][] tmap = map1.getTmap();
     int initCost = tmap[start.gety()][start.getx()];

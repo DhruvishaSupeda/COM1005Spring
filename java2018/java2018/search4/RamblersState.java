@@ -44,8 +44,8 @@ public class RamblersState extends SearchState {
     int[][] tmap = map.getTmap();
     ArrayList<SearchState> succs=new ArrayList<SearchState>();
 
-
-      for(int i=-1; i<2; i+=2){
+//CHANGE UPSO NOT SIMILAR TO HARRISON
+      for(int i=-1; i<2; i+=2) {
         Coords coords1 = new Coords(coords.getx()+i,coords.gety());
         Coords coords2 = new Coords(coords.getx(),coords.gety()+i);
 
