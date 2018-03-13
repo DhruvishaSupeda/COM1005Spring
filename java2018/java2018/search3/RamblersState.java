@@ -44,28 +44,23 @@ public class RamblersState extends SearchState {
     int[][] tmap = map.getTmap();
     ArrayList<SearchState> succs=new ArrayList<SearchState>();
 
-    Coords coords1 = new Coords(0,0);
-    Coords coords2 = new Coords(0,0);
 
       for(int i=-1; i<2; i+=2){
-        coords1 = new Coords(coords.getx()+i,coords.gety());
-        coords2 = new Coords(coords.getx(),coords.gety()+i);
+        Coords coords1 = new Coords(coords.getx()+i,coords.gety());
+        Coords coords2 = new Coords(coords.getx(),coords.gety()+i);
 
-        if ((coords1.getx()>= 0 && coords1.getx()<=255) && (coords1.gety()>=0 && coords1.gety()<=255)){
+        if (((coords1.getx()+i)>= 0 && (coords1.getx()+i)<map.getWidth()) && (coords1.gety()>=0 && coords1.gety()<map.getDepth())){
           RamblersState state1 = new RamblersState(coords1, tmap[coords.gety()][coords.getx()+i]);
-          if (!sameState(state1)) {
+        //  if (!sameState(state1)) {
             succs.add(state1);
-          }
+      //    }
         }
-        if ((coords2.getx()>= 0 && coords2.getx()<=255) && (coords2.gety()>=0 && coords2.gety()<=255)){
+        if ((coords2.getx()>= 0 && coords2.getx()<map.getWidth() && ((coords2.gety()+i)>=0 && (coords2.gety()+i)<map.getDepth()))){
           RamblersState state2 = new RamblersState(coords2, tmap[coords.gety()+i][coords.getx()]);
-          if (!sameState(state2)) {
+        //  if (!sameState(state2)) {
             succs.add(state2);
-          }
+        //  }
         }
-
-        //succs.add(new RamblersState(new Coords(coords.getx()+i, coords.gety(),  map[coords.gety()][coords.getx()+i)]));
-        //succs.add(new RamblersState(new Coords(coords.getx(), coords.gety()+i,  map[coords.gety()+i][coords.getx())]));
       }
 
     return succs;
