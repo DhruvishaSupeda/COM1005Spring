@@ -1,7 +1,6 @@
 import sheffield.*;
 import java.util.*;
 
-
 public class RunRamblersSearch{
   public static void main(String[] arg) {
 
@@ -15,10 +14,9 @@ public class RunRamblersSearch{
     //screen.println(map1.getLinks("Start"));
 
     Coords start = new Coords(0,7);
-    Coords end = new Coords(200,200);
-    Coords goal = new Coords(100,100);
+    Coords goal = new Coords(15,15);
     RamblersSearch searcher = new RamblersSearch(map1,goal);
-    SearchState initState = (SearchState) new RamblersState(start,end,7);
+    SearchState initState = (SearchState) new RamblersState(start,0);
 
     //change from search1 - specify strategy
     //String res_df = searcher.runSearch(initState, "breadthFirst");
