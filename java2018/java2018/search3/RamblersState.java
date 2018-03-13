@@ -22,6 +22,8 @@ public class RamblersState extends SearchState {
     if (coords.getx() == coords2.getx()) {
       if (coords.gety() == coords2.gety())
         return true;
+      else
+        return false;
     }
     else {
       return false;
@@ -32,12 +34,12 @@ public class RamblersState extends SearchState {
   public boolean goalP(Search searcher) {
     RamblersSearch rsearcher = (RamblersSearch) searcher;
     Coords tar = rsearcher.getGoal(); // get target
-    return compareTo(tar);
+    return this.compareTo(tar);
   }
 
   // getSuccessors
   public ArrayList<SearchState> getSuccessors (Search searcher) {
-    RamblersSearch rsearcher = (RamblersSearch) searcher;
+    RamblersSearch rsearcher = (RamblersSearch)searcher;
     TerrainMap map = rsearcher.getMap();
     int[][] tmap = map.getTmap();
     ArrayList<SearchState> succs=new ArrayList<SearchState>();
@@ -49,13 +51,13 @@ public class RamblersState extends SearchState {
         coords1 = new Coords(coords.getx()+i,coords.gety());
         coords2 = new Coords(coords.getx(),coords.gety()+i);
 
-        if ((coords1.getx()>= 0 && coords1.getx()<=15) && (coords1.gety()>=0 && coords1.gety()<=15)){
+        if ((coords1.getx()>= 0 && coords1.getx()<=255) && (coords1.gety()>=0 && coords1.gety()<=255)){
           RamblersState state1 = new RamblersState(coords1, tmap[coords.gety()][coords.getx()+i]);
           if (!sameState(state1)) {
             succs.add(state1);
           }
         }
-        if ((coords2.getx()>= 0 && coords2.getx()<=15) && (coords2.gety()>=0 && coords2.gety()<=15)){
+        if ((coords2.getx()>= 0 && coords2.getx()<=255) && (coords2.gety()>=0 && coords2.gety()<=255)){
           RamblersState state2 = new RamblersState(coords2, tmap[coords.gety()+i][coords.getx()]);
           if (!sameState(state2)) {
             succs.add(state2);

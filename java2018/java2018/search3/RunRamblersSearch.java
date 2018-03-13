@@ -13,8 +13,11 @@ public class RunRamblersSearch{
     //screen.println(map1.toString());
     //screen.println(map1.getLinks("Start"));
 
+
     Coords start = new Coords(0,7);
     Coords goal = new Coords(15,15);
+    //Gets 
+
     RamblersSearch searcher = new RamblersSearch(map1,goal);
     SearchState initState = (SearchState) new RamblersState(start,0);
 
