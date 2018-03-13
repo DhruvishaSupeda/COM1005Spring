@@ -44,12 +44,13 @@ public class RamblersState extends SearchState {
   public ArrayList<SearchState> getSuccessors (Search searcher) {
     RamblersSearch rsearcher = (RamblersSearch) searcher;
     TerrainMap map = rsearcher.getMap();
-    int[][] links=map.getTmap();
+    ArrayList<CoordsLink> links=map.getLinks(coords1);
+    //int[][] links=map.getTmap();
     ArrayList<SearchState> succs=new ArrayList<SearchState>();
 
     //CoordsLink one = new CoordsLink();
 
-    for (int[] one: links) {
+    for (CoordsLink one: links) {
     	  Coords scoords;
         if (compareCoords(coords1, coords2)) {
           scoords=one.getCoords2();
