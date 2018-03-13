@@ -19,15 +19,7 @@ public class RamblersState extends SearchState {
   }
 
   public boolean compareTo(Coords coords2) {
-    if (coords.getx() == coords2.getx()) {
-      if (coords.gety() == coords2.gety())
-        return true;
-      else
-        return false;
-    }
-    else {
-      return false;
-    }
+    return (coords.getx() == coords2.getx()) && (coords.gety() == coords2.gety());
   }
 
   // goalP
@@ -37,6 +29,21 @@ public class RamblersState extends SearchState {
     return this.compareTo(tar);
   }
 
+  public void addToState(int i, ArrayList<SearchState> succs, TerrainMap map, int[][] tmap) {
+    Coords coords1 = new Coords(coords.getx()+i,coords.gety());
+    Coords coords2 = new Coords(coords.getx(),coords.gety()+i);
+
+    if (((coords1.getx()+i)>= 0 && (coords1.getx()+i)<map.getWidth()) && (coords1.gety()>=0 && coords1.gety()<map.getDepth())){
+      RamblersState state1 = new RamblersState(coords1, tmap[coords.gety()][coords.getx()+i]);
+        succs.add(state1);
+    }
+
+    if (((coords2.getx()>= 0 && coords2.getx()<map.getWidth()) && ((coords2.gety()+i)>=0 && (coords2.gety()+i)<map.getDepth()))){
+      RamblersState state2 = new RamblersState(coords2, tmap[coords.gety()+i][coords.getx()]);
+        succs.add(state2);
+    }
+  }
+
   // getSuccessors
   public ArrayList<SearchState> getSuccessors (Search searcher) {
     RamblersSearch rsearcher = (RamblersSearch)searcher;
@@ -44,24 +51,10 @@ public class RamblersState extends SearchState {
     int[][] tmap = map.getTmap();
     ArrayList<SearchState> succs=new ArrayList<SearchState>();
 
-
-      for(int i=-1; i<2; i+=2){
-        Coords coords1 = new Coords(coords.getx()+i,coords.gety());
-        Coords coords2 = new Coords(coords.getx(),coords.gety()+i);
-
-        if (((coords1.getx()+i)>= 0 && (coords1.getx()+i)<map.getWidth()) && (coords1.gety()>=0 && coords1.gety()<map.getDepth())){
-          RamblersState state1 = new RamblersState(coords1, tmap[coords.gety()][coords.getx()+i]);
-        //  if (!sameState(state1)) {
-            succs.add(state1);
-      //    }
-        }
-        if ((coords2.getx()>= 0 && coords2.getx()<map.getWidth() && ((coords2.gety()+i)>=0 && (coords2.gety()+i)<map.getDepth()))){
-          RamblersState state2 = new RamblersState(coords2, tmap[coords.gety()+i][coords.getx()]);
-        //  if (!sameState(state2)) {
-            succs.add(state2);
-        //  }
-        }
-      }
+    int i=-1;
+    addToState(i,succs,map,tmap);
+    i=1;
+    addToState(i,succs,map,tmap);
 
     return succs;
   }
