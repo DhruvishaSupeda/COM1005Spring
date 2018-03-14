@@ -2,10 +2,13 @@
    * TestTerrainMap.java
    *
    *
-   * Created: Jan 2018
+   * Created: Fri Dec  1 12:59:33 2000
    *
    * @author <a href="mailto: "Phil Green</a>
    * @version
+   2013 version
+   run a map traversal
+   this version allows for A*
 
  */
 

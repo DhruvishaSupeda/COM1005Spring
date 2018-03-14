@@ -1,4 +1,3 @@
-//package terrainmap;
 
 /**
  * @(#)TerrainMap.java
@@ -23,7 +22,7 @@ public class TerrainMap {
  private int depth; //max y dimension
  private int height; //max height
  private String mno; //magic number
- private String irfan; //irfan comment line
+ 
  //accessors
  
  public int[][] getTmap() {return tmap;}; 
@@ -42,12 +41,11 @@ public class TerrainMap {
    * @return
    * @throws FileNotFoundException
    */
- public TerrainMap(String filename) { 
+   
+ public TerrainMap(String filename) {
     try {
       Scanner scanner = new Scanner(new File(filename));
       mno = scanner.next(); // magic number
-      if (!scanner.hasNextInt()){irfan = scanner.nextLine();}; //advance until next Int
-      if (!scanner.hasNextInt()){irfan = scanner.nextLine();};
       width = scanner.nextInt();
       depth = scanner.nextInt();
       height = scanner.nextInt();
@@ -72,7 +70,14 @@ public class TerrainMap {
     }
   }
  
-  // write a terrain map to a file
+  /**
+   * writeTMap
+   * write a TerrainMap to a file
+   * @param filename
+   * @return
+   * @throws FileNotFoundException
+   */
+   
   public void writeTMap (String fname) {
 
     try {
@@ -96,9 +101,16 @@ public class TerrainMap {
     }
 
 } 
-// show a path on a terrain map
-// path is ArrayList of Coords
-// make every pixel on path 255
+
+/**
+   * showPath
+   * show a path on a terrain map
+   * 
+   * path is list of Coords
+   * make every pixel on path 255
+   */
+   
+
 
 public void showPath (ArrayList<Coords> path){
   for (Coords c : path) tmap [c.gety()][c.getx()] =255;

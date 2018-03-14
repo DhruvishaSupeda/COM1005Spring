@@ -16,7 +16,6 @@ public abstract class SearchState {
   /**
   * accessor for local cost
   */
-
   public int getLocalCost(){
     return localCost;
   }

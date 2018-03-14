@@ -29,13 +29,3 @@ public class MapSearch extends Search {
     goal=g;
   }
 }
-
-
-
-
-
-
-
-
-
-
