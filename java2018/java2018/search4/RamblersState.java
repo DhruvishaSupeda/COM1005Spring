@@ -36,9 +36,11 @@ public class RamblersState extends SearchState {
     return this.compareTo(tar);
   }
 
-  public void addToState(int i, ArrayList<SearchState> succs, TerrainMap map, int[][] tmap) {
+  public void addToState(int i, ArrayList<SearchState> succs, TerrainMap map, int[][] tmap,RamblersSearch rsearcher) {
     Coords coords1 = new Coords(coords.getx()+i,coords.gety());
     Coords coords2 = new Coords(coords.getx(),coords.gety()+i);
+    Coords goal = rsearcher.getGoal();
+    int estRemCost = (goal.getx()-coords.getx())+(goal.gety()-coords.gety());
 
     if (((coords1.getx()+i)>= 0 && (coords1.getx()+i)<map.getWidth()) && (coords1.gety()>=0 && coords1.gety()<map.getDepth())){
       RamblersState state1 = new RamblersState(coords1, tmap[coords.gety()][coords.getx()+i], estRemCost);
@@ -59,9 +61,9 @@ public class RamblersState extends SearchState {
     ArrayList<SearchState> succs=new ArrayList<SearchState>();
 
     int i=-1;
-    addToState(i,succs,map,tmap);
+    addToState(i,succs,map,tmap,rsearcher);
     i=1;
-    addToState(i,succs,map,tmap);
+    addToState(i,succs,map,tmap,rsearcher);
 
     return succs;
   }
