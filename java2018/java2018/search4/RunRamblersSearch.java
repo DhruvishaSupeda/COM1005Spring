@@ -19,9 +19,10 @@ public class RunRamblersSearch{
     //Gets initial cost from where it starts
     int[][] tmap = map1.getTmap();
     int initCost = tmap[start.gety()][start.getx()];
+    int estRemCost = (goal.getx()-start.getx())+(goal.gety()-start.gety());
 
     RamblersSearch searcher = new RamblersSearch(map1,goal);
-    SearchState initState = (SearchState) new RamblersState(start,initCost);
+    SearchState initState = (SearchState) new RamblersState(start,initCost, estRemCost);
 
     //change from search1 - specify strategy
     //String res_df = searcher.runSearch(initState, "breadthFirst");

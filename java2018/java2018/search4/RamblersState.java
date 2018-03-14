@@ -4,12 +4,14 @@ public class RamblersState extends SearchState {
   private Coords coords;
   private int localCost;
 
-  public RamblersState(Coords c, int lc){
+  //Constructor
+  public RamblersState(Coords c, int lc, int erc){
     coords=c;
     localCost=lc;
+    estRemCost=erc;
   }
 
-  //accessor
+  //Accessors
   public int getLocalCost() {
     return localCost;
   }
@@ -18,13 +20,18 @@ public class RamblersState extends SearchState {
     return coords;
   }
 
+  public int getEstCost() {
+    return estRemCost;
+  }
+
+  //Method to compare two coordinates
   public boolean compareTo(Coords coords2) {
     return (coords.getx() == coords2.getx()) && (coords.gety() == coords2.gety());
   }
 
   // goalP
   public boolean goalP(Search searcher) {
-    RamblersSearch rsearcher = (RamblersSearch) searcher;
+    RamblersSearch rsearcher = (RamblersSearch)searcher;
     Coords tar = rsearcher.getGoal(); // get target
     return this.compareTo(tar);
   }
@@ -34,12 +41,12 @@ public class RamblersState extends SearchState {
     Coords coords2 = new Coords(coords.getx(),coords.gety()+i);
 
     if (((coords1.getx()+i)>= 0 && (coords1.getx()+i)<map.getWidth()) && (coords1.gety()>=0 && coords1.gety()<map.getDepth())){
-      RamblersState state1 = new RamblersState(coords1, tmap[coords.gety()][coords.getx()+i]);
+      RamblersState state1 = new RamblersState(coords1, tmap[coords.gety()][coords.getx()+i], estRemCost);
         succs.add(state1);
     }
 
     if (((coords2.getx()>= 0 && coords2.getx()<map.getWidth()) && ((coords2.gety()+i)>=0 && (coords2.gety()+i)<map.getDepth()))){
-      RamblersState state2 = new RamblersState(coords2, tmap[coords.gety()+i][coords.getx()]);
+      RamblersState state2 = new RamblersState(coords2, tmap[coords.gety()+i][coords.getx()], estRemCost);
         succs.add(state2);
     }
   }
