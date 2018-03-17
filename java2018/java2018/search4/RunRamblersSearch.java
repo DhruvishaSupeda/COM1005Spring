@@ -19,18 +19,14 @@ public class RunRamblersSearch{
     //Gets initial cost from where it starts
     int[][] tmap = map1.getTmap();
     int initCost = tmap[start.gety()][start.getx()];
-    int estRemCost = (goal.getx()-start.getx())+(goal.gety()-start.gety());
+    //int estRemCost = (goal.getx()-start.getx())+(goal.gety()-start.gety()); //Manhattan Distance
+    //Euclidean distance:
+    //int estRemCost = (int)(java.lang.Math.sqrt(java.lang.Math.pow(goal.getx()-start.getx(),2) + (java.lang.Math.pow(goal.getx()-start.getx(),2))));
+
+    int estRemCost = goal.getHeight()-coords.getHeight();
 
     RamblersSearch searcher = new RamblersSearch(map1,goal);
     SearchState initState = (SearchState) new RamblersState(start,initCost, estRemCost);
-
-    //change from search1 - specify strategy
-    //String res_df = searcher.runSearch(initState, "breadthFirst");
-    //screen.println(res_df);
-    //String res_bf = searcher.runSearch(initState, "depthFirst");
-    //screen.println(res_bf);
-    //String res_bb = searcher.runSearch(initState, "branchAndBound");
-  //  screen.println(res_bb);
 
     String res_astar = searcher.runSearch(initState, "AStar");
     screen.println(res_astar);
