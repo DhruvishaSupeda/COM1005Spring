@@ -39,6 +39,16 @@ public class RamblersState extends SearchState {
     return this.compareTo(tar);
   }
 
+  public int localCost(Coords coords1, Coords coords2, int[][] tmap) {
+    //If the height decreases, the cost is 1
+    if ((coords1.getx()>=coords2.getx()) && (coords2.gety()>=coords2.gety())) {
+      return 1;
+    }
+    else
+    //Otherwise, the cost is 1 plus the height difference
+      return 1 + Math.abs(tmap[coords2.gety()][coords2.getx()]-tmap[coords1.gety()][coords1.getx()]);
+  }
+
   /**
   *Adds a state to the ArrayList of states if in range and not previously visited
   *@param i the current value needing to be added to the coordinates
@@ -52,16 +62,16 @@ public class RamblersState extends SearchState {
     Coords coords2 = new Coords(coords.getx(),coords.gety()+i);
 
     //Checks if the coordinates are in range
-    if (((coords1.getx()+i)>= 0 && (coords1.getx()+i)<map.getWidth()) && (coords1.gety()>=0 && coords1.gety()<map.getDepth())){
+    if (((coords1.getx())>=0 && coords1.getx()<map.getWidth()) && (coords1.gety()>=0 && coords1.gety()<map.getDepth())){
       //Makes a new state with the coordinates and local cost
-      RamblersState state1 = new RamblersState(coords1, tmap[coords.gety()][coords.getx()+i]);
+      RamblersState state1 = new RamblersState(coords1, localCost(coords,coords1,tmap));
       //Adds the state to the ArrayList
       succs.add(state1);
     }
 
-    if (((coords2.getx()>= 0 && coords2.getx()<map.getWidth()) && ((coords2.gety()+i)>=0 && (coords2.gety()+i)<map.getDepth()))){
-      RamblersState state2 = new RamblersState(coords2, tmap[coords.gety()+i][coords.getx()]);
-        succs.add(state2);
+    if (((coords2.getx()>= 0 && coords2.getx()<map.getWidth()) && ((coords2.gety())>=0 && (coords2.gety())<map.getDepth()))){
+      RamblersState state2 = new RamblersState(coords2, localCost(coords,coords2,tmap));
+      succs.add(state2);
     }
   }
 
@@ -93,5 +103,9 @@ public class RamblersState extends SearchState {
   public boolean sameState(SearchState s2) {
     RamblersState rs2= (RamblersState)s2;
     return this.compareTo(rs2.getCoords());
+  }
+
+  public String toString() {
+    return ("Location:" + coords.gety() + ", " + coords.getx());
   }
 }
