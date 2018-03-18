@@ -5,7 +5,6 @@ public class RunRamblersSearch{
   public static void main(String[] arg) {
 
     // create an EasyWriter
-
     EasyWriter screen = new EasyWriter();
 
     TerrainMap map1= new TerrainMap("tmx.pgm");
@@ -13,14 +12,17 @@ public class RunRamblersSearch{
     //screen.println(map1.toString());
     //screen.println(map1.getLinks("Start"));
 
-
+    //Start coordinates and goal coordinates
     Coords start = new Coords(3,5);
     Coords goal = new Coords(7,14);
     //Gets initial cost from where it starts
     int[][] tmap = map1.getTmap();
+    //Cost at the start coordinate
     int initCost = tmap[start.gety()][start.getx()];
 
+    //Starts the search
     RamblersSearch searcher = new RamblersSearch(map1,goal);
+    //Initialises the initial state
     SearchState initState = (SearchState) new RamblersState(start,initCost);
 
     //change from search1 - specify strategy
