@@ -19,9 +19,12 @@ public class RunRamblersSearch{
     //Gets initial cost from where it starts
     int[][] tmap = map1.getTmap();
     int initCost = tmap[start.gety()][start.getx()];
-    int estRemCost = (goal.getx()-start.getx())+(goal.gety()-start.gety()); //Manhattan Distance
+    //int estRemCost = (goal.getx()-start.getx())+(goal.gety()-start.gety()); //Manhattan Distance
     //Euclidean distance:
-    //int estRemCost = (int)(Math.sqrt(java.lang.Math.pow(goal.getx()-start.getx(),2) + (java.lang.Math.pow(goal.getx()-start.getx(),2))));
+    //int estRemCost = (int)(Math.sqrt(Math.pow(goal.gety()-start.gety(),2) + (Math.pow(goal.getx()-start.getx(),2))));
+    //Height Difference:
+    int estRemCost = tmap[Math.abs(goal.gety()-start.gety())][Math.abs(goal.gety()-start.getx())];
+
 
     //int estRemCost = goal.getHeight()-coords.getHeight();
 
