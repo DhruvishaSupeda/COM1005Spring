@@ -49,7 +49,7 @@ public class RamblersState extends SearchState {
   */
   public int localCost(Coords coords1, Coords coords2, int[][] tmap) {
     //If the height decreases, the cost is 1
-    if ((coords2.getx()<=coords1.getx()) && (coords2.gety()<=coords1.gety())) {
+    if (tmap[coords2.gety()][coords2.getx()] <= tmap[coords1.gety()][coords1.getx()]) {
       return 1;
     }
     else

@@ -54,7 +54,7 @@ public class RamblersState extends SearchState {
   */
   public int localCost(Coords coords1, Coords coords2, int[][] tmap) {
     //If the height decreases, the cost is 1
-    if ((coords1.getx()>=coords2.getx()) && (coords2.gety()>=coords2.gety())) {
+    if (tmap[coords2.gety()][coords2.getx()] <= tmap[coords1.gety()][coords1.getx()]) {
       return 1;
     }
     else
@@ -120,5 +120,9 @@ public class RamblersState extends SearchState {
   public boolean sameState(SearchState s2) {
     RamblersState rs2= (RamblersState)s2;
     return this.compareTo(rs2.getCoords());
+  }
+
+  public String toString() {
+    return ("Location:" + coords.gety() + ", " + coords.getx());
   }
 }
