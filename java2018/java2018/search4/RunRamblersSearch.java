@@ -14,16 +14,19 @@ public class RunRamblersSearch{
     //screen.println(map1.getLinks("Start"));
 
 
-    Coords start = new Coords(0,1);
-    Coords goal = new Coords(15,14);
+    Coords start = new Coords(3,5);
+    Coords goal = new Coords(12,12);
     //Gets initial cost from where it starts
     int[][] tmap = map1.getTmap();
     int initCost = tmap[start.gety()][start.getx()];
     //int estRemCost = (goal.getx()-start.getx())+(goal.gety()-start.gety()); //Manhattan Distance
     //Euclidean distance:
-    //int estRemCost = (int)(java.lang.Math.sqrt(java.lang.Math.pow(goal.getx()-start.getx(),2) + (java.lang.Math.pow(goal.getx()-start.getx(),2))));
+    //int estRemCost = (int)(Math.sqrt(Math.pow(goal.gety()-start.gety(),2) + (Math.pow(goal.getx()-start.getx(),2))));
+    //Height Difference:
+    int estRemCost = tmap[Math.abs(goal.gety()-start.gety())][Math.abs(goal.gety()-start.getx())];
 
-    int estRemCost = goal.getHeight()-coords.getHeight();
+
+    //int estRemCost = goal.getHeight()-coords.getHeight();
 
     RamblersSearch searcher = new RamblersSearch(map1,goal);
     SearchState initState = (SearchState) new RamblersState(start,initCost, estRemCost);
