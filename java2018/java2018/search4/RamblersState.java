@@ -65,8 +65,13 @@ public class RamblersState extends SearchState {
   public int estRemCost(Coords goal, Coords coords, int[][] tmap){
     //return (goal.getx()-coords.getx())+(goal.gety()-coords.gety());
     //return (int)(Math.sqrt(Math.pow(goal.gety()-coords.gety(),2) + (Math.pow(goal.getx()-coords.getx(),2))));
+    int euclidian = (int)(Math.sqrt(Math.pow(goal.gety()-coords.gety(),2) + (Math.pow(goal.getx()-coords.getx(),2))));
     //System.out.println(tmap[Math.abs(goal.gety()-coords.gety())][Math.abs(goal.gety()-coords.getx())]);
-    return tmap[Math.abs(goal.gety()-coords.gety())][Math.abs(goal.gety()-coords.getx())];
+    //return tmap[Math.abs(goal.gety()-coords.gety())][Math.abs(goal.gety()-coords.getx())];
+    int height = tmap[Math.abs(goal.gety()-coords.gety())][Math.abs(goal.gety()-coords.getx())];
+    //return (int)Math.sqrt(Math.pow(goal.gety()-coords.gety(),2) + (Math.pow(goal.getx()-coords.getx(),2)) +
+    //  Math.pow(tmap[Math.abs(goal.gety()-coords.gety())][Math.abs(goal.gety()-coords.getx())],2) );
+    return (int)Math.sqrt(Math.pow(euclidian,2)+ Math.pow(height,2));
   }
 
   /**
@@ -81,7 +86,6 @@ public class RamblersState extends SearchState {
     Coords coords1 = new Coords(coords.gety()+i,coords.getx());
     Coords coords2 = new Coords(coords.gety(),coords.getx()+i);
     Coords goal = rsearcher.getGoal();
-    //int estRemCost = (goal.getx()-coords.getx())+(goal.gety()-coords.gety());
 
     //Checks if the coordinates are in range
     if (((coords1.getx()+i)>= 0 && (coords1.getx()+i)<map.getWidth()) && (coords1.gety()>=0 && coords1.gety()<map.getDepth())){

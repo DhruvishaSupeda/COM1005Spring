@@ -66,8 +66,8 @@ public class RamblersState extends SearchState {
   */
   public void addToState(int i, ArrayList<SearchState> succs, TerrainMap map, int[][] tmap) {
     //Initialises the coordinates to be checked and added
-    Coords coords1 = new Coords(coords.getx()+i,coords.gety());
-    Coords coords2 = new Coords(coords.getx(),coords.gety()+i);
+    Coords coords1 = new Coords(coords.gety()+i,coords.getx());
+    Coords coords2 = new Coords(coords.gety(),coords.getx()+i);
 
     //Checks if the coordinates are in range
     if (((coords1.getx())>=0 && coords1.getx()<map.getWidth()) && (coords1.gety()>=0 && coords1.gety()<map.getDepth())){
