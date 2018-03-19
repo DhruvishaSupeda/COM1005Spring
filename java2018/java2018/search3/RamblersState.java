@@ -41,7 +41,7 @@ public class RamblersState extends SearchState {
 
   public int localCost(Coords coords1, Coords coords2, int[][] tmap) {
     //If the height decreases, the cost is 1
-    if ((coords1.getx()>=coords2.getx()) && (coords2.gety()>=coords2.gety())) {
+    if ((coords2.getx()<=coords1.getx()) && (coords2.gety()<=coords1.gety())) {
       return 1;
     }
     else
@@ -52,14 +52,14 @@ public class RamblersState extends SearchState {
   /**
   *Adds a state to the ArrayList of states if in range and not previously visited
   *@param i the current value needing to be added to the coordinates
-  *@param succs the ArrayList of succcessors
+  *@param succs the ArrayList of successors
   *@param nap the TerrainMap being searched
   *@param tmap the array of the local costs of the map
   */
   public void addToState(int i, ArrayList<SearchState> succs, TerrainMap map, int[][] tmap) {
     //Initialises the coordinates to be checked and added
-    Coords coords1 = new Coords(coords.getx()+i,coords.gety());
-    Coords coords2 = new Coords(coords.getx(),coords.gety()+i);
+    Coords coords1 = new Coords(coords.gety()+i,coords.getx());
+    Coords coords2 = new Coords(coords.gety(),coords.getx()+i);
 
     //Checks if the coordinates are in range
     if (((coords1.getx())>=0 && coords1.getx()<map.getWidth()) && (coords1.gety()>=0 && coords1.gety()<map.getDepth())){
