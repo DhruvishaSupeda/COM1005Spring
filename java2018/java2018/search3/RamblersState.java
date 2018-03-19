@@ -1,4 +1,5 @@
 import java.util.*;
+
 /**
 *RamblersState.java
 */
@@ -6,12 +7,13 @@ public class RamblersState extends SearchState {
   private Coords coords;
   private int localCost;
 
+  //Constructor
   public RamblersState(Coords c, int lc){
     coords=c;
     localCost=lc;
   }
 
-  //accessor
+  //Accessors
   public int getLocalCost() {
     return localCost;
   }
@@ -39,6 +41,12 @@ public class RamblersState extends SearchState {
     return this.compareTo(tar);
   }
 
+  /**
+  * Works out the local cost of moving from one coordinate to another
+  *@param coords1 the current coordinates
+  *@param coords2 the coordinate that can be added to the succcessors
+  *@param tmap the array of local costs on the map
+  */
   public int localCost(Coords coords1, Coords coords2, int[][] tmap) {
     //If the height decreases, the cost is 1
     if ((coords1.getx()>=coords2.getx()) && (coords2.gety()>=coords2.gety())) {

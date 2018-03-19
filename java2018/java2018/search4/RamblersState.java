@@ -23,9 +23,9 @@ public class RamblersState extends SearchState {
     return coords;
   }
 
-  public int getEstCost() {
+  /*public int getEstCost() {
     return estRemCost;
-  }
+  }*/
 
   /**
   *Compares two coordinate objects
@@ -62,11 +62,16 @@ public class RamblersState extends SearchState {
       return 1 + Math.abs(tmap[coords2.gety()][coords2.getx()]-tmap[coords1.gety()][coords1.getx()]);
   }
 
+  public int estRemCost(Coords goal, Coords coords){
+    return (goal.getx()-coords.getx())+(goal.gety()-coords.gety());
+    //return (int)(Math.sqrt(java.lang.Math.pow(goal.getx()-start.getx(),2) + (java.lang.Math.pow(goal.getx()-start.getx(),2))));
+  }
+
   /**
   *Adds a state to the ArrayList of states if in range and not previously visited
   *@param i the current value needing to be added to the coordinates
   *@param succs the ArrayList of succcessors
-  *@param nap the TerrainMap being searched
+  *@param map the TerrainMap being searched
   *@param tmap the array of the local costs of the map
   */
   public void addToState(int i, ArrayList<SearchState> succs, TerrainMap map, int[][] tmap,RamblersSearch rsearcher) {
@@ -74,17 +79,17 @@ public class RamblersState extends SearchState {
     Coords coords1 = new Coords(coords.getx()+i,coords.gety());
     Coords coords2 = new Coords(coords.getx(),coords.gety()+i);
     Coords goal = rsearcher.getGoal();
-    int estRemCost = (goal.getx()-coords.getx())+(goal.gety()-coords.gety());
+    //int estRemCost = (goal.getx()-coords.getx())+(goal.gety()-coords.gety());
 
     //Checks if the coordinates are in range
     if (((coords1.getx()+i)>= 0 && (coords1.getx()+i)<map.getWidth()) && (coords1.gety()>=0 && coords1.gety()<map.getDepth())){
-      RamblersState state1 = new RamblersState(coords1, localCost(coords,coords1,tmap), estRemCost);
+      RamblersState state1 = new RamblersState(coords1, localCost(coords,coords1,tmap), estRemCost(goal, coords));
       //Adds the state to the ArrayList
       succs.add(state1);
     }
 
     if (((coords2.getx()>= 0 && coords2.getx()<map.getWidth()) && ((coords2.gety()+i)>=0 && (coords2.gety()+i)<map.getDepth()))){
-      RamblersState state2 = new RamblersState(coords2, localCost(coords,coords2,tmap), estRemCost);
+      RamblersState state2 = new RamblersState(coords2, localCost(coords,coords2,tmap), estRemCost(goal, coords));
         succs.add(state2);
     }
   }
