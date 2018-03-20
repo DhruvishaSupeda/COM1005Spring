@@ -7,14 +7,14 @@ public class RunRamblersSearch{
     // create an EasyWriter
     EasyWriter screen = new EasyWriter();
 
-    TerrainMap map1= new TerrainMap("tmc.pgm");
+    TerrainMap map1= new TerrainMap("tmx.pgm");
     //map1.mapFromFile("tmc.pgm");
     //screen.println(map1.toString());
     //screen.println(map1.getLinks("Start"));
 
     //Start coordinates and goal coordinates
-    Coords start = new Coords(1,1);
-    Coords goal = new Coords(8,7);
+    Coords start = new Coords(7,6);
+    Coords goal = new Coords(4,7);
     //Gets initial cost from where it starts
     int[][] tmap = map1.getTmap();
     //Cost at the start coordinate
