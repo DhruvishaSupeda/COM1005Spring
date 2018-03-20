@@ -4,7 +4,6 @@ import java.util.*;
 public class RunRamblersSearch{
   public static void main(String[] arg) {
 
-    // create an EasyWriter
 
     EasyWriter screen = new EasyWriter();
 
@@ -14,16 +13,16 @@ public class RunRamblersSearch{
     //screen.println(map1.getLinks("Start"));
 
 
-    Coords start = new Coords(3,5);
-    Coords goal = new Coords(12,12);
+    Coords start = new Coords(10,12);
+    Coords goal = new Coords(1,10);
     //Gets initial cost from where it starts
     int[][] tmap = map1.getTmap();
     int initCost = tmap[start.gety()][start.getx()];
-    //int estRemCost = (goal.getx()-start.getx())+(goal.gety()-start.gety()); //Manhattan Distance
+    //int estRemCost = Math.abs(goal.getx()-start.getx()) + Math.abs(goal.gety()-start.gety()); //Manhattan Distance
     //Euclidean distance:
-    //int estRemCost = (int)(Math.sqrt(Math.pow(goal.gety()-start.gety(),2) + (Math.pow(goal.getx()-start.getx(),2))));
+    int estRemCost = (int)(Math.sqrt(Math.pow(goal.gety()-start.gety(),2) + (Math.pow(goal.getx()-start.getx(),2))));
     //Height Difference:
-    int estRemCost = tmap[Math.abs(goal.gety()-start.gety())][Math.abs(goal.gety()-start.getx())];
+    //int estRemCost = tmap[Math.abs(goal.gety()-start.gety())][Math.abs(goal.gety()-start.getx())];
 
 
     //int estRemCost = goal.getHeight()-coords.getHeight();
