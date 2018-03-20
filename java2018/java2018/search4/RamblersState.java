@@ -64,13 +64,15 @@ public class RamblersState extends SearchState {
 
   public int estRemCost(Coords goal, Coords coords, int[][] tmap){
     //return Math.abs(goal.getx()-coords.getx()) + Math.abs(goal.gety()-coords.gety());
+
     //return (int)(Math.sqrt(Math.pow(goal.gety()-coords.gety(),2) + (Math.pow(goal.getx()-coords.getx(),2))));
     //int euclidian = (int)(Math.sqrt(Math.pow(goal.gety()-coords.gety(),2) + (Math.pow(goal.getx()-coords.getx(),2))));
-    //System.out.println(tmap[Math.abs(goal.gety()-coords.gety())][Math.abs(goal.gety()-coords.getx())]);
-    return tmap[Math.abs(goal.gety()-coords.gety())][Math.abs(goal.gety()-coords.getx())];
-    //int height = tmap[Math.abs(goal.gety()-coords.gety())][Math.abs(goal.gety()-coords.getx())];
-    //return (int)Math.sqrt(Math.pow(goal.gety()-coords.gety(),2) + (Math.pow(goal.getx()-coords.getx(),2)) +
-    //  Math.pow(tmap[Math.abs(goal.gety()-coords.gety())][Math.abs(goal.gety()-coords.getx())],2) );
+
+    return Math.abs(tmap[goal.gety()][goal.getx()] - tmap[coords.gety()][coords.getx()]);
+    //int height = Math.abs(tmap[coords.gety()][coords.getx()] - tmap[goal.gety()][goal.getx()]);
+
+    //return (int)Math.sqrt(Math.pow(goal.gety()-coords.gety(),2) + Math.pow(goal.getx()-coords.getx(),2) +
+    //  Math.pow(tmap[coords.gety()][coords.getx()] - tmap[goal.gety()][goal.getx()],2) );
     //return (int)Math.sqrt(Math.pow(euclidian,2)+ Math.pow(height,2));
   }
 
