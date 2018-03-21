@@ -94,7 +94,7 @@ public class RamblersState extends SearchState {
     int[][] tmap = map.getTmap();
     ArrayList<SearchState> succs=new ArrayList<SearchState>();
 
-    //Sets values of i to be added to coordinates and calles addToState
+    //Sets values of i to be added to coordinates and calls addToState
     int i=-1;
     addToState(i,succs,map,tmap);
     i=1;
