@@ -38,9 +38,6 @@ public class TestClass {
         System.out.println("Local cost downhill: false");
     }
 
-    public static void testGoalP() {
-
-    }
 
     public static void testSameState() {
       Coords coords1 = new Coords(3,4);
@@ -81,11 +78,31 @@ public class TestClass {
         System.out.println("Get successors edge: false");
     }
 
+    public static void testGoalP() {
+      Coords coords1 = new Coords(3,4);
+      Coords coords2 = new Coords(0,4);
+      RamblersState state1 = new RamblersState(coords1, 1);
+      RamblersState state2 = new RamblersState(coords2, 1);
+      TerrainMap map1= new TerrainMap("tmx.pgm");
+      RamblersSearch searcher = new RamblersSearch(map1,coords1);
+
+      if (state1.goalP(searcher))
+        System.out.println("Goal equal: true");
+      else
+        System.out.println("Goal equal: false");
+
+      if (!(state2.goalP(searcher)))
+        System.out.println("Goal not equal: true");
+      else
+        System.out.println("Goal not equal: false");
+    }
+
     public static void main(String[] arg) {
       testCompareTo();
       testLocalCost();
       testSameState();
       testGetSuccessors();
+      testGoalP();
     }
 
 }
