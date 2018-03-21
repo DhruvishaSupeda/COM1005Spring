@@ -37,7 +37,7 @@ public class RamblersState extends SearchState {
   }
 
   /**
-  * Gets the goal and compares it to the target of the search1
+  * Gets the goal and compares it to the target of the search
   *@param searcher
   */
   public boolean goalP(Search searcher) {
@@ -62,18 +62,26 @@ public class RamblersState extends SearchState {
       return 1 + Math.abs(tmap[coords2.gety()][coords2.getx()]-tmap[coords1.gety()][coords1.getx()]);
   }
 
-  public int estRemCost(Coords goal, Coords coords, int[][] tmap){
+  public int estRemCost(Coords goal, Coords coords4, int[][] tmap){
+    //Manhattan
     //return Math.abs(goal.getx()-coords.getx()) + Math.abs(goal.gety()-coords.gety());
 
+    //Euclidaifod'l
     //return (int)(Math.sqrt(Math.pow(goal.gety()-coords.gety(),2) + (Math.pow(goal.getx()-coords.getx(),2))));
     //int euclidian = (int)(Math.sqrt(Math.pow(goal.gety()-coords.gety(),2) + (Math.pow(goal.getx()-coords.getx(),2))));
 
-    return Math.abs(tmap[goal.gety()][goal.getx()] - tmap[coords.gety()][coords.getx()]);
+    //Height difference
+    //System.out.println("HELP" + Math.abs(tmap[coords4.gety()][coords4.getx()] - tmap[goal.gety()][goal.getx()]));
+    return Math.abs(tmap[coords4.gety()][coords4.getx()] - tmap[goal.gety()][goal.getx()]);
+    return localCost(coords,goal,tmap);
     //int height = Math.abs(tmap[coords.gety()][coords.getx()] - tmap[goal.gety()][goal.getx()]);
 
     //return (int)Math.sqrt(Math.pow(goal.gety()-coords.gety(),2) + Math.pow(goal.getx()-coords.getx(),2) +
     //  Math.pow(tmap[coords.gety()][coords.getx()] - tmap[goal.gety()][goal.getx()],2) );
     //return (int)Math.sqrt(Math.pow(euclidian,2)+ Math.pow(height,2));
+
+    //return Math.abs(goal.getx()-coords.getx()) + Math.abs(goal.gety()-coords.gety() +
+    //  (tmap[coords.gety()][coords.getx()] - tmap[goal.gety()][goal.getx()]));
   }
 
   /**
@@ -84,25 +92,27 @@ public class RamblersState extends SearchState {
   *@param tmap the array of the local costs of the map
   */
   public void addToState(int i, ArrayList<SearchState> succs, TerrainMap map, int[][] tmap,RamblersSearch rsearcher) {
-    //Initialises the coordinates to be checked and added
+    //Initialises the coordinates and goal to be checked and added
     Coords coords1 = new Coords(coords.gety()+i,coords.getx());
     Coords coords2 = new Coords(coords.gety(),coords.getx()+i);
     Coords goal = rsearcher.getGoal();
 
     //Checks if the coordinates are in range
     if (((coords1.getx()+i)>= 0 && (coords1.getx()+i)<map.getWidth()) && (coords1.gety()>=0 && coords1.gety()<map.getDepth())){
-      RamblersState state1 = new RamblersState(coords1, localCost(coords,coords1,tmap), estRemCost(goal, coords,tmap));
+      RamblersState state1 = new RamblersState(coords1, localCost(coords,coords1,tmap), estRemCost(goal, coords1,tmap));
       //Adds the state to the ArrayList
       succs.add(state1);
     }
-
     if (((coords2.getx()>= 0 && coords2.getx()<map.getWidth()) && ((coords2.gety()+i)>=0 && (coords2.gety()+i)<map.getDepth()))){
-      RamblersState state2 = new RamblersState(coords2, localCost(coords,coords2,tmap), estRemCost(goal, coords,tmap));
+      RamblersState state2 = new RamblersState(coords2, localCost(coords,coords2,tmap), estRemCost(goal, coords2,tmap));
         succs.add(state2);
     }
   }
 
-  // getSuccessors
+  /**
+  *Gets successors of the current state and adds it to the ArrayList of successors
+  *@param searcher
+  */
   public ArrayList<SearchState> getSuccessors (Search searcher) {
     RamblersSearch rsearcher = (RamblersSearch)searcher;
     TerrainMap map = rsearcher.getMap();
@@ -118,7 +128,10 @@ public class RamblersState extends SearchState {
   }
 
 
-  // sameState
+  /**
+  *Checks if two states are the same
+  *@param s2 the second state to be compared
+  */
   public boolean sameState(SearchState s2) {
     RamblersState rs2= (RamblersState)s2;
     return this.compareTo(rs2.getCoords());
