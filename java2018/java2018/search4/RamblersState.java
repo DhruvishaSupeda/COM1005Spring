@@ -62,28 +62,30 @@ public class RamblersState extends SearchState {
       return 1 + Math.abs(tmap[coords2.gety()][coords2.getx()]-tmap[coords1.gety()][coords1.getx()]);
   }
 
-  public int estRemCost(Coords goal, Coords coords4, int[][] tmap){
+  public int estRemCost(Coords goal, Coords coords4, int[][] tmap, RamblersSearch rsearcher){
     //Manhattan
     //return Math.abs(goal.getx()-coords.getx()) + Math.abs(goal.gety()-coords.gety());
 
-    //Euclidaifod'l
+    //Euclidean
     //return (int)(Math.sqrt(Math.pow(goal.gety()-coords.gety(),2) + (Math.pow(goal.getx()-coords.getx(),2))));
-    //int euclidian = (int)(Math.sqrt(Math.pow(goal.gety()-coords.gety(),2) + (Math.pow(goal.getx()-coords.getx(),2))));
+    //int euclidean = (int)(Math.sqrt(Math.pow(goal.gety()-coords.gety(),2) + (Math.pow(goal.getx()-coords.getx(),2))));
 
     //Height difference
     //System.out.println("HELP" + Math.abs(tmap[coords4.gety()][coords4.getx()] - tmap[goal.gety()][goal.getx()]));
     return Math.abs(tmap[coords4.gety()][coords4.getx()] - tmap[goal.gety()][goal.getx()]);
-    return localCost(coords,goal,tmap);
-    //int height = Math.abs(tmap[coords.gety()][coords.getx()] - tmap[goal.gety()][goal.getx()]);
+    //int height = Math.abs(tmap[coords4.gety()][coords4.getx()] - tmap[rsearcher.getGoalX()][rsearcher.getGoalY()]);
 
     //return (int)Math.sqrt(Math.pow(goal.gety()-coords.gety(),2) + Math.pow(goal.getx()-coords.getx(),2) +
     //  Math.pow(tmap[coords.gety()][coords.getx()] - tmap[goal.gety()][goal.getx()],2) );
-    //return (int)Math.sqrt(Math.pow(euclidian,2)+ Math.pow(height,2));
+    //return (int)Math.sqrt(Math.pow(euclidean,2)+ Math.pow(height,2));
 
     //return Math.abs(goal.getx()-coords.getx()) + Math.abs(goal.gety()-coords.gety() +
     //  (tmap[coords.gety()][coords.getx()] - tmap[goal.gety()][goal.getx()]));
   }
 
+  public int estHeight(Coords coords4, RamblersSearch rsearcher, int[][] tmap) {
+    return Math.abs(tmap[rsearcher.getGoalX()][rsearcher.getGoalY()] - tmap[coords4.gety()][coords4.getx()]);
+  }
   /**
   *Adds a state to the ArrayList of states if in range and not previously visited
   *@param i the current value needing to be added to the coordinates
@@ -99,12 +101,14 @@ public class RamblersState extends SearchState {
 
     //Checks if the coordinates are in range
     if (((coords1.getx()+i)>= 0 && (coords1.getx()+i)<map.getWidth()) && (coords1.gety()>=0 && coords1.gety()<map.getDepth())){
-      RamblersState state1 = new RamblersState(coords1, localCost(coords,coords1,tmap), estRemCost(goal, coords1,tmap));
+      RamblersState state1 = new RamblersState(coords1, localCost(coords,coords1,tmap), estRemCost(goal, coords1, tmap, rsearcher));
+      System.out.println(rsearcher.getGoal());
       //Adds the state to the ArrayList
       succs.add(state1);
     }
     if (((coords2.getx()>= 0 && coords2.getx()<map.getWidth()) && ((coords2.gety()+i)>=0 && (coords2.gety()+i)<map.getDepth()))){
-      RamblersState state2 = new RamblersState(coords2, localCost(coords,coords2,tmap), estRemCost(goal, coords2,tmap));
+      RamblersState state2 = new RamblersState(coords2, localCost(coords,coords2,tmap), estRemCost(goal, coords2, tmap, rsearcher));
+      System.out.println(rsearcher.getGoal());
         succs.add(state2);
     }
   }
