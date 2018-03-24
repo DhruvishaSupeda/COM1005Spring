@@ -6,6 +6,12 @@ public class RamblersSearch extends Search {
   public TerrainMap getMap(){
     return map;
   }
+  public int getGoalX(){
+    return goal.getx();
+  }
+  public int getGoalY(){
+    return goal.gety();
+  }
   public Coords getGoal(){
     return goal;
   }
