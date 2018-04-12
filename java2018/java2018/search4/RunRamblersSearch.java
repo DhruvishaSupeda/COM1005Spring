@@ -8,8 +8,8 @@ public class RunRamblersSearch{
 
     TerrainMap map1= new TerrainMap("tmx.pgm");
 
-    Coords start = new Coords(14,12);
-    Coords goal = new Coords(1,11);
+    Coords start = new Coords(7,0);
+    Coords goal = new Coords(5,8);
     //Gets initial cost from where it starts
     int[][] tmap = map1.getTmap();
     int initCost = tmap[start.gety()][start.getx()];

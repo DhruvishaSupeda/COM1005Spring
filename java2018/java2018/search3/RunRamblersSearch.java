@@ -13,8 +13,8 @@ public class RunRamblersSearch{
     //screen.println(map1.getLinks("Start"));
 
     //Start coordinates and goal coordinates
-    Coords start = new Coords(7,6);
-    Coords goal = new Coords(4,7);
+    Coords start = new Coords(0,0);
+    Coords goal = new Coords(5,8);
     //Gets initial cost from where it starts
     int[][] tmap = map1.getTmap();
     //Cost at the start coordinate

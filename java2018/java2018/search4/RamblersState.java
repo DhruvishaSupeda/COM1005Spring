@@ -62,18 +62,17 @@ public class RamblersState extends SearchState {
       return 1 + Math.abs(tmap[coords2.gety()][coords2.getx()]-tmap[coords1.gety()][coords1.getx()]);
   }
 
-  public int estRemCost(Coords goal, Coords coords4, int[][] tmap, RamblersSearch rsearcher){
+  public int estRemCost(Coords goal, Coords coords, int[][] tmap, RamblersSearch rsearcher){
     //Manhattan
     //return Math.abs(goal.getx()-coords.getx()) + Math.abs(goal.gety()-coords.gety());
 
     //Euclidean
-    //return (int)(Math.sqrt(Math.pow(goal.gety()-coords.gety(),2) + (Math.pow(goal.getx()-coords.getx(),2))));
+    return (int)(Math.sqrt(Math.pow(goal.gety()-coords.gety(),2) + (Math.pow(goal.getx()-coords.getx(),2))));
     //int euclidean = (int)(Math.sqrt(Math.pow(goal.gety()-coords.gety(),2) + (Math.pow(goal.getx()-coords.getx(),2))));
 
     //Height difference
-    //System.out.println("HELP" + Math.abs(tmap[coords4.gety()][coords4.getx()] - tmap[goal.gety()][goal.getx()]));
-    return Math.abs(tmap[coords4.gety()][coords4.getx()] - tmap[goal.gety()][goal.getx()]);
-    //int height = Math.abs(tmap[coords4.gety()][coords4.getx()] - tmap[rsearcher.getGoalX()][rsearcher.getGoalY()]);
+    //return Math.abs(tmap[coords.gety()][coords.getx()] - tmap[goal.gety()][goal.getx()]);
+    //int height = Math.abs(tmap[coords.gety()][coords.getx()] - tmap[rsearcher.getGoalX()][rsearcher.getGoalY()]);
 
     //return (int)Math.sqrt(Math.pow(goal.gety()-coords.gety(),2) + Math.pow(goal.getx()-coords.getx(),2) +
     //  Math.pow(tmap[coords.gety()][coords.getx()] - tmap[goal.gety()][goal.getx()],2) );
