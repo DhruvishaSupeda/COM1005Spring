@@ -18,11 +18,11 @@ public class WarriorsStrips{
     StripsOp ladder = new StripsOp("pickup treasure in P using ladder",
                                     "pickup treasure in P",
                                     "treasure in P",
-                                    "Warrior in P|treasure in P");//Dudt carry object?
+                                    "Warrior in P|treasure in P|snake notin P");//Dudt carry object?
     StripsOp hookRope = new StripsOp("pickup treasure in P using rope",
                                     "pickup treasure in P",
                                     "treasure in P",
-                                    "Warrior in R|treasure in P|hook in R|rope in R");//Dudt carry object?
+                                    "Warrior in R|treasure in P|hook in R|rope in R|snake in P");//Dudt carry object?
 
     ArrayList<StripsOp> warriorOps = new ArrayList<StripsOp>();
     warriorOps.add(move);
@@ -33,7 +33,7 @@ public class WarriorsStrips{
     //create instance of Strips1, give it the operators, init state & goal state
 
     Strips1 str=new Strips1(warriorOps,
-                            new MStringVector("Warrior in W|treasure in P"),
+                            new MStringVector("Warrior in W|treasure in P|snake in P|hook in H|rope in R"),
                             new MStringVector("Warrior in R|pickup treasure in P"));//CHANGE GOAL STATE
 
 
