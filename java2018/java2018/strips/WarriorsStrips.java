@@ -7,6 +7,7 @@ public class WarriorsStrips{
   public static void main(String[] args) {
     EasyWriter scr=new EasyWriter();
 
+<<<<<<< HEAD
 
     StripsOp ladder = new StripsOp("put ladder into P",
                                     "can pickup treasure",
@@ -20,12 +21,14 @@ public class WarriorsStrips{
                                    "Warrior in ?r2",
                                    "Warrior in ?r1",
                                    "Warrior in ?r1");
+
+    //Operator to carry an object from place 1 to place 2, moving the Warrior in the process too
     StripsOp carry = new StripsOp("carry ?obj from ?r1 to ?r2",
                                     "Warrior in ?r2|?obj in ?r2",
                                     "Warrior in ?r1|?obj in ?r1",
                                     "?obj in ?r1|Warrior in ?r1");
-    StripsOp hookCreate = new StripsOp("create hook",
-                                    "hook created",
+    StripsOp hookCreate = new StripsOp("create hookRope",
+                                    "hook created|hookRope in R",
                                     "",
                                     "hook in R|rope in R|Warrior in R");
     StripsOp pickup = new StripsOp("pickup treasure",
@@ -46,7 +49,7 @@ public class WarriorsStrips{
     //create instance of Strips1, give it the operators, init state & goal state
 
     Strips1 str=new Strips1(warriorOps,
-                            new MStringVector("Warrior in W|treasure in P|hook in H|rope in R|ladder in L|snake in P"),
+                            new MStringVector("Warrior in W|treasure in P|hook in H|rope in R|ladder in L|snake not in P"),
                             new MStringVector("picked up treasure"));//CHANGE GOAL STATE //Warrior in R|
 
 
