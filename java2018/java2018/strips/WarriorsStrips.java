@@ -8,14 +8,14 @@ public class WarriorsStrips{
     EasyWriter scr=new EasyWriter();
 
 
-    StripsOp ladder = new StripsOp("lower ladder into P",
-                                    "treasure available",
+    StripsOp ladder = new StripsOp("put ladder into P",
+                                    "can pickup treasure",
                                     "",
                                     "snake not in P|ladder in P|Warrior in P");
-    StripsOp hookRope = new StripsOp("lower hook and rope into P",
-                                    "treasure available",
+    StripsOp hookRope = new StripsOp("put hook and rope into P",
+                                    "can pickup treasure",
                                     "",
-                                    "hook created|snake in P|Warrior in P");
+                                    "hook created|snake in P|Warrior in R");
     StripsOp move = new StripsOp("move from ?r1 to ?r2",
                                    "Warrior in ?r2",
                                    "Warrior in ?r1",
@@ -31,7 +31,7 @@ public class WarriorsStrips{
     StripsOp pickup = new StripsOp("pickup treasure",
                                     "picked up treasure",
                                     "",
-                                    "treasure available");
+                                    "can pickup treasure");
 
 
     ArrayList<StripsOp> warriorOps = new ArrayList<StripsOp>();
