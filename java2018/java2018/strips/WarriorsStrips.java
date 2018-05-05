@@ -7,32 +7,38 @@ public class WarriorsStrips{
   public static void main(String[] args) {
     EasyWriter scr=new EasyWriter();
 
-
+    //Ladder operator to lower the ladder into the pit P
     StripsOp ladder = new StripsOp("put ladder into P",
                                     "can pickup treasure",
                                     "",
                                     "snake not in P|ladder in P|Warrior in P");
-    StripsOp hookRope = new StripsOp("put hook and rope into P",
+
+    //hookRope operator to lower the now-joined hook and rope into the pit P
+    StripsOp hookRope = new StripsOp("put hookRope into P",
                                     "can pickup treasure",
                                     "",
-                                    "hook created|snake in P|Warrior in R");
+                                    "hook created|snake in P|hookRope in R|Warrior in R");
+
+    //Move operator to move the Warrior from one place to another
     StripsOp move = new StripsOp("move from ?r1 to ?r2",
                                    "Warrior in ?r2",
                                    "Warrior in ?r1",
                                    "Warrior in ?r1");
 
-    //Operator to carry an object from place 1 to place 2, moving the Warrior in the process too
+    //Carry operator for the Warrior to carry one object from one place to another and remaining in that second place
     StripsOp carry = new StripsOp("carry ?obj from ?r1 to ?r2",
                                     "Warrior in ?r2|?obj in ?r2",
                                     "Warrior in ?r1|?obj in ?r1",
                                     "?obj in ?r1|Warrior in ?r1");
+
+    //hookCreate operator to join the hook and rope to make one object
     StripsOp hookCreate = new StripsOp("create hookRope",
                                     "hook created|hookRope in R",
                                     "",
                                     "hook in R|rope in R|Warrior in R");
     StripsOp pickup = new StripsOp("pickup treasure",
                                     "picked up treasure",
-                                    "",
+                                    "can pickup treasure",
                                     "can pickup treasure");
 
 
@@ -48,8 +54,8 @@ public class WarriorsStrips{
     //create instance of Strips1, give it the operators, init state & goal state
 
     Strips1 str=new Strips1(warriorOps,
-                            new MStringVector("Warrior in W|treasure in P|hook in H|rope in R|ladder in L|snake not in P"),
-                            new MStringVector("picked up treasure"));//CHANGE GOAL STATE //Warrior in R|
+                            new MStringVector("Warrior in W|treasure in P|hook in H|rope in R|ladder in L|snake in P"),
+                            new MStringVector("picked up treasure"));
 
 
     //run Strips
